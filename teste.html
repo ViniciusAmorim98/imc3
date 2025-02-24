@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMC</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: black;
+            color: green;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #resultado {
+            margin-top: 50px;
+        }
+
+        input {
+            border: none;
+            padding: 10px;
+            background: black;
+            border: 0 0 2px 0;
+            border-bottom: solid green 2px;
+            color: white;
+            font-size: 16px;
+        }
+
+        input:focus {
+
+            outline: none;
+            /* Remove o contorno branco padrão */
+        }
+
+        input[type="button"] {
+            background-color: green;
+            color: white;
+            cursor: pointer;
+            width: 100px;
+        }
+
+        @media (max-width: 500px) {
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            #resultado {
+                text-align: center;
+                width: 80%;
+                margin: 50px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <form action="">
+        <input id="nome" type="text" placeholder="Nome">
+        <input id="peso" type="text" placeholder="Peso">
+        <input id="altura" type="text" placeholder="Altura">
+        <input type="button" value="Enviar" onclick="enviarDados()">
+    </form>
+
+    <div id="resultado">
+        resultado
+    </div>
+
+
+    <script>
+        function enviarDados() {
+            var nome = document.getElementById("nome").value
+            var peso = document.getElementById("peso").value
+            var altura = document.getElementById("altura").value
+
+            var altura = altura / 100
+            var m = peso / (altura * altura)
+            var m = m.toFixed(2)
+
+            var classificacao = ""
+
+            if (m < 16) {
+                classificacao = "peso muito grave"
+            } else if (m >= 16 && m < 16.99) {
+                classificacao = "Baixo peso grave"
+            } else if (m >= 17 && m < 18.49) {
+                classificacao = "Baixo peso"
+            } else if (m >= 18.50 && m < 24.99) {
+                classificacao = "Peso normal"
+            } else if (m >= 25 && m < 29.99) {
+                classificacao = "Sobre peso"
+            } else if (m >= 30 && m < 34.99) {
+                classificacao = "Obesidade grau 1"
+            } else if (m >= 35 && m < 39.99) {
+                classificacao = "Obesidade grau 2"
+            } else if (m > 40) {
+                classificacao = "obseidade grau 3"
+            }
+
+            document.getElementById("resultado").innerHTML = nome + " possui índice de massa corporal igual a " + m + ", sendo classificado como:  " + classificacao
+        }
+    </script>
+
+</body>
+
+</html>
